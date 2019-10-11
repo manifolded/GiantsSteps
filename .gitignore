@@ -5,6 +5,11 @@
 [Bb]uilds/
 Assets/AssetStoreTools*
 
+# exclude installed package Triangulation2D from Mattatz on GitHub.
+**/Assets/Packages/
+**/Assets/Packages.meta
+
+
 # Visual Studio cache directory
 .vs/
 
@@ -34,3 +39,5 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+*~
