@@ -10,11 +10,22 @@ public class GeneratePrism : MonoBehaviour
 
     void Start()
     {
-        // select 2D mesh triangle to use as cross-section
-        int frontIndex2D = 2;
-        float depth = 20;
-
+        float depth = 20.0f;
         Mesh mesh2D = mesh2DHolder.GetComponent<MeshFilter>().mesh;
+        int[] triangles2D = mesh2D.triangles;
+
+        int numTriangles = triangles2D.Length / 3;
+
+        for(int frontIndex2D = 0; frontIndex2D<numTriangles; frontIndex2D++)
+        {
+            GenerateSinglePrism(mesh2D, frontIndex2D, depth);
+        }
+
+    }
+
+    // =========================================================================
+    void GenerateSinglePrism(Mesh mesh2D, int frontIndex2D, float depth)
+    {
 
         Vector3[] vertices2D = mesh2D.vertices;
         int[] triangles2D = mesh2D.triangles;
@@ -25,10 +36,11 @@ public class GeneratePrism : MonoBehaviour
         AddBackFace(vertices, triangles, vertices2D, triangles2D, frontIndex2D, depth);
         AddSideFaces(vertices, triangles, vertices2D, triangles2D, frontIndex2D, depth);
 
-        // Assemble output game object
-        gameObject.AddComponent<MeshFilter>();
-        gameObject.AddComponent<MeshRenderer>();
-        Mesh mesh = gameObject.GetComponent<MeshFilter>().mesh;
+        // Create output game object
+        GameObject prism = new GameObject("Prism");
+        prism.AddComponent<MeshFilter>();
+        prism.AddComponent<MeshRenderer>();
+        Mesh mesh = prism.GetComponent<MeshFilter>().mesh;
 
         mesh.vertices = vertices.ToArray();
         mesh.triangles = triangles.ToArray();
@@ -38,7 +50,7 @@ public class GeneratePrism : MonoBehaviour
         mesh.RecalculateNormals();
         mesh.RecalculateBounds();
 
-        gameObject.GetComponent<MeshRenderer>().material = mat;
+        prism.GetComponent<MeshRenderer>().material = mat;
 
     }
 
