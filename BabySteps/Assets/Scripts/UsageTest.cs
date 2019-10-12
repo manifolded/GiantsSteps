@@ -36,7 +36,7 @@ public class UsageTest : MonoBehaviour
         // GetComponent<MeshFilter>().sharedMesh = mesh;
         //gameObject.GetComponent<MeshFilter>().sharedMesh = mesh;
         gameObject.GetComponent<MeshFilter>().mesh = mesh;
-        gameObject.AddComponent<MeshRenderer>();
+        //gameObject.AddComponent<MeshRenderer>();
 
         //gameObject.AddComponent<MeshCollider>();
 
