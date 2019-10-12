@@ -21,12 +21,11 @@ public class UsageTest : MonoBehaviour
         //points.Add(new Vector2(-3.5f, 2.5f));
 
         // Square Profile Pentagon
-        points.Add(new Vector2(100, 100));
-        points.Add(new Vector2(100, -100));
-        points.Add(new Vector2(-100, -100));
-        points.Add(new Vector2(-100, 100));
-        //    decrease the y value and the vertex doesn't keep decreasing in y.  A bug?
-        points.Add(new Vector2(0, 80));
+        points.Add(new Vector2(10, 10));
+        points.Add(new Vector2(10, -10));
+        points.Add(new Vector2(-10, -10));
+        points.Add(new Vector2(-10, 10));
+        points.Add(new Vector2(0, -8));
 
 
         // construct Polygon2D 
