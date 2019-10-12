@@ -14,7 +14,7 @@ public class UsageTest : MonoBehaviour
     {
         // input points for a polygon2D contor
         List<Vector2> points = new List<Vector2>();
-        PopulateSquarePerimeter(points, 1000, 30);
+        PopulateSquarePerimeter(points, 1000, 50);
 
         // construct Polygon2D 
         Polygon2D polygon = Polygon2D.Contour(points.ToArray());
@@ -57,17 +57,14 @@ public class UsageTest : MonoBehaviour
     // =========================================================================
     void PopulateSquarePerimeter(List<Vector2> points, int res, int num) 
     {
-        //List<Vector2> points = new List<Vector2>();
         List<int> vals = PopulateInterval(res, num);
-        //for (int i = 0; i < vals.Count; i++)
-        //    Debug.Log("i = " + i + ": vals[i] = " + vals[i]);
 
         if (res < 4)
             Debug.Log("resolution, res, must be 4 or larger.");
         if (num < 4)
             Debug.Log("num vertices, num, must be 4 or larger.");
 
-        for (int i=0; i<num; i++)
+        for (int i=0; i<vals.Count; i++)
         {
             // faces of the square indexed as 0, 1, 2, 3
             int q = 4 * vals[i] / res; // integer division intended
@@ -86,8 +83,6 @@ public class UsageTest : MonoBehaviour
             //  using integer black magic
             float x = sign * qm2 + nqm2 * sq;
             float y = sign * -nqm2 + qm2 * sq;
-
-            //Debug.Log("i = " + i + " (x,y) = " + new Vector2(x, y));
 
             points.Add(new Vector2(x, y));
         }
