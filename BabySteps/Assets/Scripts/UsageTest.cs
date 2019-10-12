@@ -8,7 +8,7 @@ using mattatz.Triangulation2DSystem;
 public class UsageTest : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // input points for a polygon2D contor
         List<Vector2> points = new List<Vector2>();
@@ -36,7 +36,7 @@ public class UsageTest : MonoBehaviour
         // GetComponent<MeshFilter>().sharedMesh = mesh;
         //gameObject.GetComponent<MeshFilter>().sharedMesh = mesh;
         gameObject.GetComponent<MeshFilter>().mesh = mesh;
-        //gameObject.AddComponent<MeshRenderer>();
+        // gameObject.AddComponent<MeshRenderer>();
 
         //gameObject.AddComponent<MeshCollider>();
 
