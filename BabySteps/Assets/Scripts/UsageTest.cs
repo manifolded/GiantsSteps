@@ -13,12 +13,21 @@ public class UsageTest : MonoBehaviour
         // input points for a polygon2D contor
         List<Vector2> points = new List<Vector2>();
 
-        // Add Vector2 to points
-        points.Add(new Vector2(-2.5f, -2.5f));
-        points.Add(new Vector2(2.5f, -2.5f));
-        points.Add(new Vector2(4.5f, 2.5f));
-        points.Add(new Vector2(0.5f, 4.5f));
-        points.Add(new Vector2(-3.5f, 2.5f));
+        //// Pentagon
+        //points.Add(new Vector2(-2.5f, -2.5f));
+        //points.Add(new Vector2(2.5f, -2.5f));
+        //points.Add(new Vector2(4.5f, 2.5f));
+        //points.Add(new Vector2(0.5f, 4.5f));
+        //points.Add(new Vector2(-3.5f, 2.5f));
+
+        // Square Profile Pentagon
+        points.Add(new Vector2(100, 100));
+        points.Add(new Vector2(100, -100));
+        points.Add(new Vector2(-100, -100));
+        points.Add(new Vector2(-100, 100));
+        //    decrease the y value and the vertex doesn't keep decreasing in y.  A bug?
+        points.Add(new Vector2(0, 80));
+
 
         // construct Polygon2D 
         Polygon2D polygon = Polygon2D.Contour(points.ToArray());
