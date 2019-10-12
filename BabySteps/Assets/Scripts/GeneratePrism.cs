@@ -18,7 +18,7 @@ public class GeneratePrism : MonoBehaviour
 
         for(int frontIndex2D = 0; frontIndex2D<numTriangles; frontIndex2D++)
         {
-            GenerateSinglePrism(ref mesh2D, frontIndex2D, Random.Range(10, 20));
+            GenerateSinglePrism(ref mesh2D, frontIndex2D, Random.Range(1, 4));
         }
 
     }
