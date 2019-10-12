@@ -18,13 +18,13 @@ public class GeneratePrism : MonoBehaviour
 
         for(int frontIndex2D = 0; frontIndex2D<numTriangles; frontIndex2D++)
         {
-            GenerateSinglePrism(mesh2D, frontIndex2D, Random.Range(10, 20));
+            GenerateSinglePrism(ref mesh2D, frontIndex2D, Random.Range(10, 20));
         }
 
     }
 
     // =========================================================================
-    void GenerateSinglePrism(Mesh mesh2D, int frontIndex2D, float depth)
+    void GenerateSinglePrism(ref Mesh mesh2D, int frontIndex2D, float depth)
     {
 
         Vector3[] vertices2D = mesh2D.vertices;
