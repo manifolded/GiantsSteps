@@ -19,7 +19,7 @@ public class GeneratePrism : MonoBehaviour
 
         for(int frontIndex2D = 0; frontIndex2D<numTriangles; frontIndex2D++)
         {
-            GenerateSinglePrism(ref mesh2D, frontIndex2D, Random.Range(1.0f, 4.0f));
+            GenerateSinglePrism(ref mesh2D, frontIndex2D, 1);
         }
 
     }
@@ -40,6 +40,7 @@ public class GeneratePrism : MonoBehaviour
         // Create output game object
         GameObject prism = new GameObject("Prism");
         prism.transform.parent = PrismHolder;
+        prism.transform.localScale += Vector3.up * Random.Range(1.0f, 2.0f);
         prism.AddComponent<MeshFilter>();
         prism.AddComponent<MeshRenderer>();
         Mesh mesh = prism.GetComponent<MeshFilter>().mesh;
