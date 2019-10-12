@@ -5,6 +5,8 @@ using UnityEngine;
 using mattatz.Utils;
 using mattatz.Triangulation2DSystem;
 
+using System.Linq;
+
 public class UsageTest : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -12,21 +14,7 @@ public class UsageTest : MonoBehaviour
     {
         // input points for a polygon2D contor
         List<Vector2> points = new List<Vector2>();
-
-        //// Pentagon
-        //points.Add(new Vector2(-2.5f, -2.5f));
-        //points.Add(new Vector2(2.5f, -2.5f));
-        //points.Add(new Vector2(4.5f, 2.5f));
-        //points.Add(new Vector2(0.5f, 4.5f));
-        //points.Add(new Vector2(-3.5f, 2.5f));
-
-        // Square Profile Pentagon
-        points.Add(new Vector2(10, 10));
-        points.Add(new Vector2(10, -10));
-        points.Add(new Vector2(-10, -10));
-        points.Add(new Vector2(-10, 10));
-        points.Add(new Vector2(0, -8));
-
+        PopulateSquarePerimeter(points, 1000, 30);
 
         // construct Polygon2D 
         Polygon2D polygon = Polygon2D.Contour(points.ToArray());
@@ -51,9 +39,59 @@ public class UsageTest : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    // =========================================================================
+    List<int> PopulateInterval(int res, int num)
     {
-        
+        List<int> vals = new List<int>();
+
+        for (int i=0; i<num; i++)
+            vals.Add(Random.Range(0, res));
+
+        // sort - points on perimeter must be ordered
+        vals.Sort();
+
+        // return with duplicates removed
+        return vals.Distinct().ToList();
     }
+
+    // =========================================================================
+    void PopulateSquarePerimeter(List<Vector2> points, int res, int num) 
+    {
+        //List<Vector2> points = new List<Vector2>();
+        List<int> vals = PopulateInterval(res, num);
+        //for (int i = 0; i < vals.Count; i++)
+        //    Debug.Log("i = " + i + ": vals[i] = " + vals[i]);
+
+        if (res < 4)
+            Debug.Log("resolution, res, must be 4 or larger.");
+        if (num < 4)
+            Debug.Log("num vertices, num, must be 4 or larger.");
+
+        for (int i=0; i<num; i++)
+        {
+            // faces of the square indexed as 0, 1, 2, 3
+            int q = 4 * vals[i] / res; // integer division intended
+            float s = 8.0f * vals[i] / res;  // [0, 8)
+
+            int qm2 = q % 2;  // quadrant mod 2
+            int nqm2 = -qm2 + 1;  // complement of quadrant mod 2
+            int qo2 = q / 2;  // integer division intended
+
+            int sign = -2 * qo2 + 1;
+            int offset = -(2 * q + 1);
+
+            float sq = (s + offset)*sign;
+
+            // map the randomly covered interval to the square
+            //  using integer black magic
+            float x = sign * qm2 + nqm2 * sq;
+            float y = sign * -nqm2 + qm2 * sq;
+
+            //Debug.Log("i = " + i + " (x,y) = " + new Vector2(x, y));
+
+            points.Add(new Vector2(x, y));
+        }
+    }
+    
+
 }
