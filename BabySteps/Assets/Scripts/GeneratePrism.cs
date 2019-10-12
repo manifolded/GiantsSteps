@@ -6,6 +6,7 @@ using UnityEngine;
 public class GeneratePrism : MonoBehaviour
 {
     public GameObject mesh2DHolder;
+    public Transform PrismHolder;
     public Material mat;
 
     void Start()
@@ -38,6 +39,7 @@ public class GeneratePrism : MonoBehaviour
 
         // Create output game object
         GameObject prism = new GameObject("Prism");
+        prism.transform.parent = PrismHolder;
         prism.AddComponent<MeshFilter>();
         prism.AddComponent<MeshRenderer>();
         Mesh mesh = prism.GetComponent<MeshFilter>().mesh;
