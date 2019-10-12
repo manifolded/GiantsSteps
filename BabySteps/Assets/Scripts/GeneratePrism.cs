@@ -10,7 +10,7 @@ public class GeneratePrism : MonoBehaviour
 
     void Start()
     {
-        float depth = 20.0f;
+        //float depth = 20.0f;
         Mesh mesh2D = mesh2DHolder.GetComponent<MeshFilter>().mesh;
         int[] triangles2D = mesh2D.triangles;
 
@@ -18,7 +18,7 @@ public class GeneratePrism : MonoBehaviour
 
         for(int frontIndex2D = 0; frontIndex2D<numTriangles; frontIndex2D++)
         {
-            GenerateSinglePrism(mesh2D, frontIndex2D, depth);
+            GenerateSinglePrism(mesh2D, frontIndex2D, Random.Range(10, 20));
         }
 
     }
