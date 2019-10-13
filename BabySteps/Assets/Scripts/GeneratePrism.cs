@@ -43,6 +43,7 @@ public class GeneratePrism : MonoBehaviour
         prism.transform.localScale += Vector3.up * Random.Range(1.0f, 2.0f);
         prism.AddComponent<MeshFilter>();
         prism.AddComponent<MeshRenderer>();
+        prism.AddComponent<FloatScalingEffect>(); // Added scaling animation
         Mesh mesh = prism.GetComponent<MeshFilter>().mesh;
 
         mesh.vertices = vertices.ToArray();
