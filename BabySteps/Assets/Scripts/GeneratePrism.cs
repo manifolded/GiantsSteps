@@ -1,7 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+
+using mattatz.Utils;
+using mattatz.Triangulation2DSystem;
 
 public class GeneratePrism : MonoBehaviour
 {
@@ -11,7 +14,6 @@ public class GeneratePrism : MonoBehaviour
 
     void Start()
     {
-        //float depth = 20.0f;
         Mesh mesh2D = mesh2DHolder.GetComponent<MeshFilter>().mesh;
         int[] triangles2D = mesh2D.triangles;
 
@@ -31,6 +33,8 @@ public class GeneratePrism : MonoBehaviour
         List<Vector3> vertices = new List<Vector3> { };
         List<int> triangles = new List<int> { };
 
+        // select individual triangle from triangles2D with frontIndex2D
+        // single triangle vertices in 2D coords
         Vector3[] triVerts2D =
         {
             vertices2D[triangles2D[frontIndex2D * 3 + 2]],
@@ -38,14 +42,40 @@ public class GeneratePrism : MonoBehaviour
             vertices2D[triangles2D[frontIndex2D * 3 + 0]]
         };
 
-        AddFrontFace(vertices, triangles, triVerts2D);
-        AddBackFace(vertices, triangles, triVerts2D);
-        AddSideFaces(vertices, triangles, triVerts2D);
+        // structure required to utilize Mattatz's circumcenter code.
+        List<Vertex2D> triVerts2D2 = new List<Vertex2D>();
+
+        for (int i = 0; i < 3; i++)
+        {
+            Vector3 v3D = triVerts2D[i];
+            Vector2 v2D = new Vector2(v3D[0], v3D[1]); // need only x & y
+            triVerts2D2.Add(new Vertex2D(v2D));
+        }
+
+        Segment2D s0 = new Segment2D(triVerts2D2[0], triVerts2D2[1]);
+        Segment2D s1 = new Segment2D(triVerts2D2[1], triVerts2D2[2]);
+        Segment2D s2 = new Segment2D(triVerts2D2[2], triVerts2D2[0]);
+
+        Triangle2D triangle2D2 = new Triangle2D(s0, s1, s2);
+        Vector2 center2D = triangle2D2.Circumcenter();
+        Vector3 center = center2D;
+
+        // translate triangle to place circumcenter at the origin
+        Vector3[] triVerts2Dshifted = new Vector3[3];
+        for (int i = 0; i < 3; i++) {
+            triVerts2Dshifted[i] = triVerts2D[i] - center;
+        }
+        AddFrontFace(vertices, triangles, triVerts2Dshifted);
+        AddBackFace(vertices, triangles, triVerts2Dshifted);
+        AddSideFaces(vertices, triangles, triVerts2Dshifted);
+
+        Vector3 center3D = new Vector3(center2D[0], 0, center2D[1]);
 
         // Create output game object
         GameObject prism = new GameObject("Prism");
         prism.transform.parent = PrismHolder;
         prism.transform.localScale += Vector3.up * Random.Range(1.0f, 2.0f);
+        prism.transform.position = center3D;
         prism.AddComponent<MeshFilter>();
         prism.AddComponent<MeshRenderer>();
         prism.AddComponent<FloatScalingEffect>(); // Added scaling animation
@@ -60,7 +90,6 @@ public class GeneratePrism : MonoBehaviour
         mesh.RecalculateBounds();
 
         prism.GetComponent<MeshRenderer>().material = mat;
-
     }
 
     // =========================================================================
@@ -78,7 +107,6 @@ public class GeneratePrism : MonoBehaviour
             // add new triangle
             triangles.Add(numVerts + i);
         }
-
     }
 
     // =========================================================================
@@ -101,7 +129,6 @@ public class GeneratePrism : MonoBehaviour
             // add new triangle
             triangles.Add(numVerts + i);
         }
-
     }
 
     // =========================================================================
@@ -171,7 +198,3 @@ public class GeneratePrism : MonoBehaviour
 
     }
 }
-
-
-
-
