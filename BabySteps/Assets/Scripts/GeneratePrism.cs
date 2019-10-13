@@ -164,7 +164,7 @@ public class GeneratePrism : MonoBehaviour
 
         // add all 3 side faces
         for (int i = 0; i < 3; i++) {
-            int[] edge = { i, (i + 1)%3 };
+            int[] edge = { (i + 1)%3, i };
 
             AddSideFaceFromEdge(vertices, triangles, triVerts2D, edge);
         }
