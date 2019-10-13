@@ -21,21 +21,26 @@ public class GeneratePrism : MonoBehaviour
         {
             GenerateSinglePrism(ref mesh2D, frontIndex2D);
         }
-
     }
 
     // =========================================================================
     void GenerateSinglePrism(ref Mesh mesh2D, int frontIndex2D)
     {
-
-        Vector3[] vertices2D = mesh2D.vertices;
         int[] triangles2D = mesh2D.triangles;
+        Vector3[] vertices2D = mesh2D.vertices;
         List<Vector3> vertices = new List<Vector3> { };
         List<int> triangles = new List<int> { };
 
-        AddFrontFace(vertices, triangles, ref mesh2D, frontIndex2D);
-        AddBackFace(vertices, triangles, ref mesh2D, frontIndex2D);
-        AddSideFaces(vertices, triangles, ref mesh2D, frontIndex2D);
+        Vector3[] triVerts2D =
+        {
+            vertices2D[triangles2D[frontIndex2D * 3 + 2]],
+            vertices2D[triangles2D[frontIndex2D * 3 + 1]],
+            vertices2D[triangles2D[frontIndex2D * 3 + 0]]
+        };
+
+        AddFrontFace(vertices, triangles, triVerts2D);
+        AddBackFace(vertices, triangles, triVerts2D);
+        AddSideFaces(vertices, triangles, triVerts2D);
 
         // Create output game object
         GameObject prism = new GameObject("Prism");
@@ -60,22 +65,13 @@ public class GeneratePrism : MonoBehaviour
 
     // =========================================================================
     void AddFrontFace(List<Vector3> vertices, List<int> triangles,
-                      ref Mesh mesh2D, int frontIndex2D)
+                      Vector3[] triVerts2D)
     {
-        Vector3[] vertices2D = mesh2D.vertices;
-        int[] triangles2D = mesh2D.triangles;
-
         int numVerts = vertices.Count();
-
-        int[] triangle2D = {
-            triangles2D[frontIndex2D * 3 + 2],
-            triangles2D[frontIndex2D * 3 + 1],
-            triangles2D[frontIndex2D * 3 + 0]
-        };
 
         for (int i = 0; i < 3; i++)
         {
-            Vector3 vertex2D = vertices2D[triangle2D[i]];
+            Vector3 vertex2D = triVerts2D[i];
             // transform vertex2D to vertex3D and add
             vertices.Add(new Vector3(vertex2D[0], -vertex2D[2], vertex2D[1]));
 
@@ -87,24 +83,14 @@ public class GeneratePrism : MonoBehaviour
 
     // =========================================================================
     void AddBackFace(List<Vector3> vertices, List<int> triangles,
-                     ref Mesh mesh2D, int frontIndex2D)
+                     Vector3[] triVerts2D)
     {
-        Vector3[] vertices2D = mesh2D.vertices;
-        int[] triangles2D = mesh2D.triangles;
-
         int numVerts = vertices.Count();
-
-        // reverse the orientation of the triangle
-        int[] triangle2D = {
-            triangles2D[frontIndex2D * 3 + 0],
-            triangles2D[frontIndex2D * 3 + 1],
-            triangles2D[frontIndex2D * 3 + 2]
-        };
 
         for (int i = 0; i < 3; i++)
         {
             // pull out single vertex in 2D mesh coords
-            Vector3 vertex2D = vertices2D[triangle2D[i]];
+            Vector3 vertex2D = triVerts2D[(2 - i)]; // reverse orientation
             // transform vertex2D to vertex3D in full 3D coords
             Vector3 vertex3D = new Vector3(vertex2D[0], -vertex2D[2], vertex2D[1]);
             // translate back face through depth
@@ -120,11 +106,8 @@ public class GeneratePrism : MonoBehaviour
 
     // =========================================================================
     void AddSideFaceFromEdge(List<Vector3> vertices, List<int> triangles,
-                             ref Mesh mesh2D, int[] edge)
+                             Vector3[] triVerts2D, int[] edge)
     {
-        Vector3[] vertices2D = mesh2D.vertices;
-        int[] triangles2D = mesh2D.triangles;
-
         int numVerts = vertices.Count();
 
         int ea = edge[0];
@@ -132,7 +115,7 @@ public class GeneratePrism : MonoBehaviour
 
         // add the 'a' vertex
         // index: numVerts + 0
-        Vector3 vertex2D = vertices2D[ea];
+        Vector3 vertex2D = triVerts2D[ea];
         // transform vertex2D to vertex3D in full 3D coords
         Vector3 vertex3D = new Vector3(vertex2D[0], -vertex2D[2], vertex2D[1]);
         // add
@@ -141,14 +124,14 @@ public class GeneratePrism : MonoBehaviour
 
         // add the 'b' vertex
         // index: numVerts + 1
-        vertex2D = vertices2D[eb];
+        vertex2D = triVerts2D[eb];
         vertex3D = new Vector3(vertex2D[0], -vertex2D[2], vertex2D[1]);
         vertices.Add(vertex3D);
         int b = numVerts + 1;
 
         // add the a-prime vertex | 'a' translated to back face
         // index: numVerts + 2
-        vertex2D = vertices2D[ea];
+        vertex2D = triVerts2D[ea];
         vertex3D = new Vector3(vertex2D[0], -vertex2D[2], vertex2D[1]);
         vertex3D += new Vector3(0, 1, 0);
         vertices.Add(vertex3D);
@@ -156,7 +139,7 @@ public class GeneratePrism : MonoBehaviour
 
         // add the b-prime vertex | 'b' translated to back face
         // index: numVerts + 3
-        vertex2D = vertices2D[eb];
+        vertex2D = triVerts2D[eb];
         vertex3D = new Vector3(vertex2D[0], -vertex2D[2], vertex2D[1]);
         vertex3D += new Vector3(0, 1, 0);
         vertices.Add(vertex3D);
@@ -175,25 +158,15 @@ public class GeneratePrism : MonoBehaviour
 
     // =========================================================================
     void AddSideFaces(List<Vector3> vertices, List<int> triangles,
-                      ref Mesh mesh2D, int frontIndex2D)
+                      Vector3[] triVerts2D)
     {
-        Vector3[] vertices2D = mesh2D.vertices;
-        int[] triangles2D = mesh2D.triangles;
-
         int numVerts = vertices.Count();
-
-        int[] triangle2D =
-        {
-            triangles2D[frontIndex2D*3 + 0],
-            triangles2D[frontIndex2D*3 + 1],
-            triangles2D[frontIndex2D*3 + 2]
-        };
 
         // add all 3 side faces
         for (int i = 0; i < 3; i++) {
-            int[] edge = { triangle2D[i], triangle2D[(i + 1)%3] };
+            int[] edge = { i, (i + 1)%3 };
 
-            AddSideFaceFromEdge(vertices, triangles, ref mesh2D, edge);
+            AddSideFaceFromEdge(vertices, triangles, triVerts2D, edge);
         }
 
     }
