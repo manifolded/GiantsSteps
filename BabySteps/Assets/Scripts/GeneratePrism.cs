@@ -19,13 +19,13 @@ public class GeneratePrism : MonoBehaviour
 
         for(int frontIndex2D = 0; frontIndex2D<numTriangles; frontIndex2D++)
         {
-            GenerateSinglePrism(ref mesh2D, frontIndex2D, 1);
+            GenerateSinglePrism(ref mesh2D, frontIndex2D);
         }
 
     }
 
     // =========================================================================
-    void GenerateSinglePrism(ref Mesh mesh2D, int frontIndex2D, float depth)
+    void GenerateSinglePrism(ref Mesh mesh2D, int frontIndex2D)
     {
 
         Vector3[] vertices2D = mesh2D.vertices;
@@ -34,8 +34,8 @@ public class GeneratePrism : MonoBehaviour
         List<int> triangles = new List<int> { };
 
         AddFrontFace(vertices, triangles, ref mesh2D, frontIndex2D);
-        AddBackFace(vertices, triangles, ref mesh2D, frontIndex2D, depth);
-        AddSideFaces(vertices, triangles, ref mesh2D, frontIndex2D, depth);
+        AddBackFace(vertices, triangles, ref mesh2D, frontIndex2D);
+        AddSideFaces(vertices, triangles, ref mesh2D, frontIndex2D);
 
         // Create output game object
         GameObject prism = new GameObject("Prism");
@@ -87,7 +87,7 @@ public class GeneratePrism : MonoBehaviour
 
     // =========================================================================
     void AddBackFace(List<Vector3> vertices, List<int> triangles,
-                     ref Mesh mesh2D, int frontIndex2D, float depth)
+                     ref Mesh mesh2D, int frontIndex2D)
     {
         Vector3[] vertices2D = mesh2D.vertices;
         int[] triangles2D = mesh2D.triangles;
@@ -108,7 +108,7 @@ public class GeneratePrism : MonoBehaviour
             // transform vertex2D to vertex3D in full 3D coords
             Vector3 vertex3D = new Vector3(vertex2D[0], -vertex2D[2], vertex2D[1]);
             // translate back face through depth
-            vertex3D += new Vector3(0, depth, 0);
+            vertex3D += new Vector3(0, 1, 0);
             // add
             vertices.Add(vertex3D);
 
@@ -120,7 +120,7 @@ public class GeneratePrism : MonoBehaviour
 
     // =========================================================================
     void AddSideFaceFromEdge(List<Vector3> vertices, List<int> triangles,
-                             ref Mesh mesh2D, int[] edge, float depth)
+                             ref Mesh mesh2D, int[] edge)
     {
         Vector3[] vertices2D = mesh2D.vertices;
         int[] triangles2D = mesh2D.triangles;
@@ -150,7 +150,7 @@ public class GeneratePrism : MonoBehaviour
         // index: numVerts + 2
         vertex2D = vertices2D[ea];
         vertex3D = new Vector3(vertex2D[0], -vertex2D[2], vertex2D[1]);
-        vertex3D += new Vector3(0, depth, 0);
+        vertex3D += new Vector3(0, 1, 0);
         vertices.Add(vertex3D);
         int ap = numVerts + 2;
 
@@ -158,7 +158,7 @@ public class GeneratePrism : MonoBehaviour
         // index: numVerts + 3
         vertex2D = vertices2D[eb];
         vertex3D = new Vector3(vertex2D[0], -vertex2D[2], vertex2D[1]);
-        vertex3D += new Vector3(0, depth, 0);
+        vertex3D += new Vector3(0, 1, 0);
         vertices.Add(vertex3D);
         int bp = numVerts + 3;
 
@@ -175,7 +175,7 @@ public class GeneratePrism : MonoBehaviour
 
     // =========================================================================
     void AddSideFaces(List<Vector3> vertices, List<int> triangles,
-                      ref Mesh mesh2D, int frontIndex2D, float depth)
+                      ref Mesh mesh2D, int frontIndex2D)
     {
         Vector3[] vertices2D = mesh2D.vertices;
         int[] triangles2D = mesh2D.triangles;
@@ -193,8 +193,7 @@ public class GeneratePrism : MonoBehaviour
         for (int i = 0; i < 3; i++) {
             int[] edge = { triangle[i], triangle[(i + 1)%3] };
 
-            AddSideFaceFromEdge(vertices, triangles, ref mesh2D,
-                                edge, depth);
+            AddSideFaceFromEdge(vertices, triangles, ref mesh2D, edge);
         }
 
     }
