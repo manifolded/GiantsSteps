@@ -74,11 +74,11 @@ public class GeneratePrism : MonoBehaviour
         // Create output game object
         GameObject prism = new GameObject("Prism");
         prism.transform.parent = PrismHolder;
-        prism.transform.localScale += Vector3.up * Random.Range(1.0f, 2.0f);
+        prism.tag = "Prism";
         prism.transform.position = center3D;
         prism.AddComponent<MeshFilter>();
         prism.AddComponent<MeshRenderer>();
-        prism.AddComponent<FloatScalingEffect>(); // Added scaling animation
+        //prism.AddComponent<FloatScalingEffect>(); // Added scaling animation
         Mesh mesh = prism.GetComponent<MeshFilter>().mesh;
 
         mesh.vertices = vertices.ToArray();
