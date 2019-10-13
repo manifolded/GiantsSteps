@@ -22,7 +22,7 @@ public class FloatScalingEffect : MonoBehaviour
     {
         while (true)
         {
-            float yScale = Mathf.Lerp(-ScaleAmount, ScaleAmount, (Mathf.Sin((Time.realtimeSinceStartup + offset) * SinScaling) + 1) / 2);
+            float yScale = ScaleAmount * Mathf.Sin((Time.realtimeSinceStartup + offset) * SinScaling);
 
             transform.localScale += Vector3.up * yScale;
 
