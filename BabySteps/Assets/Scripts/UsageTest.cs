@@ -9,10 +9,9 @@ using System.Linq;
 
 public class UsageTest : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Awake()
     {
-        // input points for a polygon2D contor
+        // input points for a polygon2D contour
         List<Vector2> points = new List<Vector2>();
         // When calling PopulateSquarePerimeter you should prefer
         // a factor of 4 for the 'res' argument.
@@ -42,7 +41,7 @@ public class UsageTest : MonoBehaviour
     }
 
     // =========================================================================
-    List<int> PopulateInterval(int res, int num)
+    private List<int> PopulateInterval(int res, int num)
     {
         List<int> vals = new List<int>();
 
@@ -61,7 +60,7 @@ public class UsageTest : MonoBehaviour
     }
 
     // =========================================================================
-    void PopulateSquarePerimeter(List<Vector2> points, int res, int num) 
+    private void PopulateSquarePerimeter(List<Vector2> points, int res, int num) 
     {
         List<int> vals = PopulateInterval(res, num);
 
