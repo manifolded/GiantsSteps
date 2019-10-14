@@ -11,6 +11,8 @@ public class PrismController : MonoBehaviour
     private float omega;
     public float amplitude = 0.2f;
 
+    private GameObject[] prisms;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,12 +20,13 @@ public class PrismController : MonoBehaviour
         float oneOverSqrt2 = 1 / Mathf.Sqrt(2.0f);
         k = wavenumber * new Vector3(oneOverSqrt2, 0, oneOverSqrt2);
         omega = wavenumber * v;
+        prisms = GameObject.FindGameObjectsWithTag("Prism");
     }
 
     // Update is called once per frame
     void Update()
     {
-        foreach(GameObject prism in GameObject.FindGameObjectsWithTag("Prism"))
+        foreach(GameObject prism in prisms)
         {
             Vector3 x = prism.transform.position;
             float arg = Vector3.Dot(k, x) - omega * Time.time;
