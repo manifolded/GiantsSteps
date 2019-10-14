@@ -95,6 +95,9 @@ public class GeneratePrism : MonoBehaviour
 
         // now that we have the mesh setup, we can add colliders.
         prism.AddComponent<MeshCollider>();
+        prism.GetComponent<MeshCollider>().convex = true;
+
+        prism.AddComponent<PrismImpact>();
 
         prism.GetComponent<MeshRenderer>().material = mat;
     }
