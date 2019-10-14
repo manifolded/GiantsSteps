@@ -97,7 +97,8 @@ public class GeneratePrism : MonoBehaviour
         prism.AddComponent<MeshCollider>();
         prism.GetComponent<MeshCollider>().convex = true;
 
-        prism.AddComponent<PrismImpact>();
+        //prism.AddComponent<PrismImpact>();
+        prism.AddComponent<PrismMoveInterface>();
 
         prism.GetComponent<MeshRenderer>().material = mat;
     }
