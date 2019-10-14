@@ -15,7 +15,7 @@ public class UsageTest : MonoBehaviour
         List<Vector2> points = new List<Vector2>();
         // When calling PopulateSquarePerimeter you should prefer
         // a factor of 4 for the 'res' argument.
-        PopulateSquarePerimeter(points, 1000, 10);
+        PopulateSquarePerimeter(points, 1000, 20);
 
         // construct Polygon2D 
         Polygon2D polygon = Polygon2D.Contour(points.ToArray());
