@@ -28,6 +28,11 @@ public class PrismMoveInterface : MonoBehaviour
 
             yield return new WaitForFixedUpdate();
         }
+
+        if(transform.localScale.y <= 0)
+        {
+            Destroy(gameObject);
+        }
         
     }
 }

@@ -12,6 +12,8 @@ public class FireFromCamera : MonoBehaviour
     private bool canFire = true;
     private bool firing = false;
 
+    public KeyCode fireKey;
+
     private void Start()
     {
         StartCoroutine(GunHandler());
@@ -19,7 +21,7 @@ public class FireFromCamera : MonoBehaviour
 
     private void Update()
     {
-        firing = Input.GetKeyDown(KeyCode.Space);
+        firing = Input.GetKey(fireKey);
     }
 
     IEnumerator GunHandler()

@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5a84c8d24f4f3438ac0c2cc630b1ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosion: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 3}
   explosionSize: 20
   explosionStrength: 0.2
   explosionFalloff: 15
