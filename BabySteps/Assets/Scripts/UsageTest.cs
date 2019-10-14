@@ -14,6 +14,8 @@ public class UsageTest : MonoBehaviour
     {
         // input points for a polygon2D contor
         List<Vector2> points = new List<Vector2>();
+        // When calling PopulateSquarePerimeter you should prefer
+        // a factor of 4 for the 'res' argument.
         PopulateSquarePerimeter(points, 1000, 50);
 
         // construct Polygon2D 
@@ -46,6 +48,10 @@ public class UsageTest : MonoBehaviour
 
         for (int i=0; i<num; i++)
             vals.Add(Random.Range(0, res));
+
+        // make sure the four corners will be represented
+        for(int i=0; i<4; i++)
+            vals.Add(i * res/4);
 
         // sort - points on perimeter must be ordered
         vals.Sort();

@@ -267,6 +267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wavelength: 2
+  amplitude: 0.2
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
