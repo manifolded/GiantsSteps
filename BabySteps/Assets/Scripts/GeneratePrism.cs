@@ -26,7 +26,7 @@ public class GeneratePrism : MonoBehaviour
     }
 
     // =========================================================================
-    void GenerateSinglePrism(ref Mesh mesh2D, int frontIndex2D)
+    private void GenerateSinglePrism(ref Mesh mesh2D, int frontIndex2D)
     {
         int[] triangles2D = mesh2D.triangles;
         Vector3[] vertices2D = mesh2D.vertices;
@@ -93,7 +93,7 @@ public class GeneratePrism : MonoBehaviour
     }
 
     // =========================================================================
-    void AddFrontFace(List<Vector3> vertices, List<int> triangles,
+    private void AddFrontFace(List<Vector3> vertices, List<int> triangles,
                       Vector3[] triVerts2D)
     {
         int numVerts = vertices.Count();
@@ -110,7 +110,7 @@ public class GeneratePrism : MonoBehaviour
     }
 
     // =========================================================================
-    void AddBackFace(List<Vector3> vertices, List<int> triangles,
+    private void AddBackFace(List<Vector3> vertices, List<int> triangles,
                      Vector3[] triVerts2D)
     {
         int numVerts = vertices.Count();
@@ -132,7 +132,7 @@ public class GeneratePrism : MonoBehaviour
     }
 
     // =========================================================================
-    void AddSideFaceFromEdge(List<Vector3> vertices, List<int> triangles,
+    private void AddSideFaceFromEdge(List<Vector3> vertices, List<int> triangles,
                              Vector3[] triVerts2D, int[] edge)
     {
         int numVerts = vertices.Count();
@@ -184,7 +184,7 @@ public class GeneratePrism : MonoBehaviour
     }
 
     // =========================================================================
-    void AddSideFaces(List<Vector3> vertices, List<int> triangles,
+    private void AddSideFaces(List<Vector3> vertices, List<int> triangles,
                       Vector3[] triVerts2D)
     {
         int numVerts = vertices.Count();
