@@ -93,6 +93,9 @@ public class GeneratePrism : MonoBehaviour
         mesh.RecalculateNormals();
         mesh.RecalculateBounds();
 
+        // now that we have the mesh setup, we can add colliders.
+        prism.AddComponent<MeshCollider>();
+
         prism.GetComponent<MeshRenderer>().material = mat;
     }
 
