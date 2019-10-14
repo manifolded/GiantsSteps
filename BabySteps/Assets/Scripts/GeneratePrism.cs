@@ -75,7 +75,12 @@ public class GeneratePrism : MonoBehaviour
         GameObject prism = new GameObject("Prism");
         prism.transform.parent = PrismHolder;
         prism.tag = "Prism";
-        prism.transform.position = center3D;
+        // offset is location of parent.  Used to set the center of the
+        //   block of prisms.
+        Vector3 offset = prism.transform.parent.transform.position;
+        // center3D (above) is the circumcenter of the triangle from which the
+        //     prism is constructed.
+        prism.transform.position = center3D + offset;
         prism.AddComponent<MeshFilter>();
         prism.AddComponent<MeshRenderer>();
         //prism.AddComponent<FloatScalingEffect>(); // Added scaling animation
