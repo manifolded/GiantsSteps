@@ -22,14 +22,11 @@ public class PrismBomb : MonoBehaviour
         foreach(Collider col in prismsHit)
         {
             float dist = Vector3.Distance(col.transform.position, transform.position);
-            float amountToMove = (((explosionSize/ Mathf.Pow(dist, 2)) + explosionStrength) / explosionFalloff);
-
-            //col.transform.localScale += Vector3.down * amountToMove;
+            float amountToMove = ((explosionSize/ Mathf.Pow(dist, 2)) + explosionStrength) / explosionFalloff;
 
             PrismMoveInterface prism = col.GetComponent<PrismMoveInterface>();
             if (prism != null)
             {
-                //Debug.Log("hi");
                 prism.Move(amountToMove, dist / shockWaveSpeed, speedOfPrism);
             }
         }

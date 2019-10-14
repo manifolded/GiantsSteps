@@ -21,7 +21,6 @@ public class PrismMoveInterface : MonoBehaviour
 
         while (lerper < 1)
         {
-            //Debug.Log("Moving");
 
             transform.localScale = new Vector3(1, Mathf.Lerp(lastYPos, -newPos + lastYPos, lerper), 1);
             lerper += speed;
