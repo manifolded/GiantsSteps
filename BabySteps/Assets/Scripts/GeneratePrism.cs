@@ -9,7 +9,6 @@ using mattatz.Triangulation2DSystem;
 public class GeneratePrism : MonoBehaviour
 {
     public GameObject mesh2DHolder;
-    public Transform PrismHolder;
     public Material mat;
 
     void Start()
@@ -73,11 +72,11 @@ public class GeneratePrism : MonoBehaviour
 
         // Create output game object
         GameObject prism = new GameObject("Prism");
-        prism.transform.parent = PrismHolder;
+        prism.transform.parent = gameObject.transform;
         prism.tag = "Prism";
         // offset is location of parent.  Used to set the center of the
         //   block of prisms.
-        Vector3 offset = prism.transform.parent.transform.position;
+        Vector3 offset = gameObject.transform.position;
         // center3D (above) is the circumcenter of the triangle from which the
         //     prism is constructed.
         prism.transform.position = center3D + offset;
