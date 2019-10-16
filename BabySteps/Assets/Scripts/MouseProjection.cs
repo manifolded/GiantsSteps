@@ -5,7 +5,8 @@ using UnityEngine;
 public class MouseProjection : MonoBehaviour
 {
     private Camera cam;
-    // Start is called before the first frame update
+    public float height = 5.0f;
+
     void Start()
     {
         cam = Camera.main;
@@ -24,7 +25,9 @@ public class MouseProjection : MonoBehaviour
         // arbitrary distance to object
         //Vector3 point = cam.ScreenToWorldPoint(mousePosScreen);
 
-        Plane xzPlane = new Plane(Vector3.up, 0.0f);
+        //Plane xzPlane = new Plane(Vector3.up, 0.0f);
+        Plane xzPlane = new Plane(Vector3.up, height*Vector3.up);
+
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         float enter = 0.0f;
 
@@ -33,7 +36,7 @@ public class MouseProjection : MonoBehaviour
             // Get the point of intersection
             Vector3 hit = ray.GetPoint(enter);
 
-            gameObject.transform.position = hit;
+            gameObject.transform.position = hit - height*Vector3.up;
         }
     }
 }
