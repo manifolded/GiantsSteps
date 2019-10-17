@@ -16,8 +16,6 @@ public class PrismController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        wavenumber = 2 * Mathf.PI / wavelength;
-        omega = wavenumber * v;
 
         compassCont = GameObject.Find("Compass").GetComponent<CompassController>();
 
@@ -36,6 +34,8 @@ public class PrismController : MonoBehaviour
 
         float aim = compassCont.aim;
         Vector3 dir = (Quaternion.Euler(aim * Vector3.up) * Vector3.forward).normalized;
+        wavenumber = 2 * Mathf.PI / wavelength;
+        omega = wavenumber * v;
         Vector3 k = wavenumber * dir;
 
         foreach (GameObject prism in prisms)
