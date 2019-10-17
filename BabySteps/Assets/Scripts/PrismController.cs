@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PrismController : MonoBehaviour
 {
-    private Vector3 k;
+    private CompassController compassCont;
     public float wavelength = 1.0f;
     private float wavenumber;
     private float v = 1;  // wave speed 1 m/sec
@@ -17,21 +17,33 @@ public class PrismController : MonoBehaviour
     void Start()
     {
         wavenumber = 2 * Mathf.PI / wavelength;
-        float oneOverSqrt2 = 1 / Mathf.Sqrt(2.0f);
-        k = wavenumber * new Vector3(oneOverSqrt2, 0, oneOverSqrt2);
         omega = wavenumber * v;
-        prisms = GameObject.FindGameObjectsWithTag("Prism");
+
+        compassCont = GameObject.Find("Compass").GetComponent<CompassController>();
+
+        prisms = new GameObject[] { };
+        //prisms = GameObject.FindGameObjectsWithTag("Prism");
+        //Debug.Log(prisms.Length);
     }
 
     // Update is called once per frame
     void Update()
     {
-        foreach(GameObject prism in prisms)
+        if(prisms.Length == 0)
+        {
+            prisms = GameObject.FindGameObjectsWithTag("Prism");
+        }
+
+        float aim = compassCont.aim;
+        Vector3 dir = (Quaternion.Euler(aim * Vector3.up) * Vector3.forward).normalized;
+        Vector3 k = wavenumber * dir;
+
+        foreach (GameObject prism in prisms)
         {
             Vector3 x = prism.transform.position;
-            float arg = Vector3.Dot(k, x) - omega * Time.time;
+            float phase = Vector3.Dot(k, x) - omega * Time.time;
             Vector3 scale = Vector3.one;
-            scale[1] += amplitude * Mathf.Cos(arg);
+            scale[1] += amplitude * Mathf.Cos(phase);
             prism.transform.localScale = scale;
         }
     }
