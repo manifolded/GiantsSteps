@@ -5,7 +5,7 @@ using UnityEngine;
 public class MouseProjection : MonoBehaviour
 {
     private Camera cam;
-    public float height = 5.0f;
+    public float height = 2.0f;
 
     void Start()
     {
@@ -17,18 +17,11 @@ public class MouseProjection : MonoBehaviour
         Event currentEvent = Event.current;
 
         Vector2 mousePos2D = currentEvent.mousePosition;
-        //Vector3 mousePosScreen = new Vector3(mousePos2D.x, mousePos2D.y, cam.nearClipPlane);
-        Vector3 mousePosScreen = new Vector3(mousePos2D.x, mousePos2D.y, cam.farClipPlane);
+        //Vector3 mousePosScreen = new Vector3(mousePos2D.x, Screen.height - mousePos2D.y, cam.nearClipPlane);
+        Vector3 mousePosScreen = new Vector3(mousePos2D.x, Screen.height - mousePos2D.y, cam.farClipPlane);
 
-
-        // works, but not useful
-        // arbitrary distance to object
-        //Vector3 point = cam.ScreenToWorldPoint(mousePosScreen);
-
-        //Plane xzPlane = new Plane(Vector3.up, 0.0f);
         Plane xzPlane = new Plane(Vector3.up, height*Vector3.up);
-
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        Ray ray = cam.ScreenPointToRay(mousePosScreen);
         float enter = 0.0f;
 
         if(xzPlane.Raycast(ray, out enter))
