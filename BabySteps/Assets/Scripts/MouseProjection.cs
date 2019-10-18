@@ -10,6 +10,7 @@ public class MouseProjection : MonoBehaviour
     // data presented to PrismController script which generates the triggered waves
     public Vector3 locTriggered = new Vector3();
     public float timeTriggered = 0;
+    public bool triggered = false;
 
     void Start()
     {
@@ -39,6 +40,7 @@ public class MouseProjection : MonoBehaviour
         // if left mouse button pressed
         if (currentEvent.type == EventType.MouseDown && currentEvent.button == 0)
         {
+            triggered = true;
             locTriggered = gameObject.transform.position;
             timeTriggered = Time.time;
         }
