@@ -260,8 +260,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &40759750
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,8 +366,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &134234904
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,8 +470,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &146827323
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,8 +819,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &289402537
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,8 +905,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 1
   amplitude: 0.2
+  wavelength: 1
+  decaylength: 3
 --- !u!114 &289989177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -975,8 +980,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &353724367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,8 +1176,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &502825216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1295,14 +1302,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: 0.2164396, y: 0, z: 0, w: 0.97629607}
-  m_LocalPosition: {x: 0, y: 8, z: -32}
+  m_LocalRotation: {x: 0.30070576, y: 0, z: 0, w: 0.953717}
+  m_LocalPosition: {x: 0, y: 4, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1239087617}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 25, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 35, y: 0, z: 0}
 --- !u!114 &534669906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1444,8 +1451,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!4 &565768328
 Transform:
   m_ObjectHideFlags: 0
@@ -1647,8 +1655,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &785869064
 GameObject:
   m_ObjectHideFlags: 0
@@ -2392,8 +2401,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &1139778295
 GameObject:
   m_ObjectHideFlags: 0
@@ -2497,8 +2507,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &1203383176
 GameObject:
   m_ObjectHideFlags: 0
@@ -2729,8 +2740,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &1238279442
 GameObject:
   m_ObjectHideFlags: 0
@@ -2986,8 +2998,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &1261396023
 GameObject:
   m_ObjectHideFlags: 0
@@ -3091,8 +3104,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &1302279032
 GameObject:
   m_ObjectHideFlags: 0
@@ -3151,8 +3165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &1305807724
 GameObject:
   m_ObjectHideFlags: 0
@@ -3197,8 +3212,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!4 &1305807727
 Transform:
   m_ObjectHideFlags: 0
@@ -3445,8 +3461,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &1456565488
 GameObject:
   m_ObjectHideFlags: 0
@@ -3550,8 +3567,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &1489622600
 GameObject:
   m_ObjectHideFlags: 0
@@ -3655,8 +3673,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &1508258117
 GameObject:
   m_ObjectHideFlags: 0
@@ -3715,8 +3734,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &1509566261
 GameObject:
   m_ObjectHideFlags: 0
@@ -3775,8 +3795,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &1527970155
 GameObject:
   m_ObjectHideFlags: 0
@@ -3860,8 +3881,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!4 &1544417771
 Transform:
   m_ObjectHideFlags: 0
@@ -3979,8 +4001,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &1624397466
 GameObject:
   m_ObjectHideFlags: 0
@@ -4039,8 +4062,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &1627116462
 GameObject:
   m_ObjectHideFlags: 0
@@ -4588,8 +4612,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &1817739482
 GameObject:
   m_ObjectHideFlags: 0
@@ -4687,8 +4712,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &1830731541
 GameObject:
   m_ObjectHideFlags: 0
@@ -4921,8 +4947,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &2055753481
 GameObject:
   m_ObjectHideFlags: 0
@@ -4981,8 +5008,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1eb70dac2c846b09496f19c4495011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavelength: 2
   amplitude: 0.2
+  wavelength: 2
+  decaylength: 3
 --- !u!1 &2069591804
 GameObject:
   m_ObjectHideFlags: 0

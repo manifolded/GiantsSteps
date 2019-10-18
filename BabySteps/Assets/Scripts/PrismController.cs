@@ -5,11 +5,13 @@ using UnityEngine;
 public class PrismController : MonoBehaviour
 {
     private CompassController compassCont;
+    public float amplitude = 0.2f;
     public float wavelength = 1.0f;
+    public float decaylength = 3.0f;
+
     private float wavenumber;
     private float v = 1;  // wave speed 1 m/sec
     private float omega;
-    public float amplitude = 0.2f;
 
     private GameObject[] prisms;
 
@@ -41,10 +43,29 @@ public class PrismController : MonoBehaviour
         foreach (GameObject prism in prisms)
         {
             Vector3 x = prism.transform.position;
-            float phase = Vector3.Dot(k, x) - omega * Time.time;
+
+            // function:  cos(k.x - w t)
+            //float phase = Vector3.Dot(k, x) - omega * Time.time;
+            //float function = Mathf.Cos(phase);
+
+            // function: (1/r) Sech(j r*) Sin(k r*)
+            // where r* = r - v t in the horizontal plane
+
+            float rSq = x[0] * x[0] + x[2] * x[2];
+            float rStar = Mathf.Sqrt(rSq) - v * Time.time;
+            float decaynumber = 2.0f * Mathf.PI / decaylength;
+            float function = Mathf.Sin(wavenumber * rStar) / (Mathf.Sqrt(rSq) * Cosh(decaynumber * rStar));
+
             Vector3 scale = Vector3.one;
-            scale[1] += amplitude * Mathf.Cos(phase);
+            scale[1] += amplitude * function;
             prism.transform.localScale = scale;
         }
     }
+
+    private static float Cosh(float x)
+    {
+        return (float)System.Math.Cosh((double)x);
+    }
+
+
 }
