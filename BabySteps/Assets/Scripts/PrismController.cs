@@ -15,6 +15,11 @@ public class PrismController : MonoBehaviour
 
     private GameObject[] prisms;
 
+    public GameObject target;
+    private MouseProjection mouseProj;
+    private Vector3 locTriggered;
+    private float timeTriggered;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +29,8 @@ public class PrismController : MonoBehaviour
         prisms = new GameObject[] { };
         //prisms = GameObject.FindGameObjectsWithTag("Prism");
         //Debug.Log(prisms.Length);
+
+        mouseProj = target.GetComponent<MouseProjection>();
     }
 
     // Update is called once per frame
@@ -40,6 +47,10 @@ public class PrismController : MonoBehaviour
         omega = wavenumber * v;
         Vector3 k = wavenumber * dir;
 
+        // get event data from MouseProjection
+        locTriggered = mouseProj.locTriggered;
+        timeTriggered = mouseProj.timeTriggered;
+
         foreach (GameObject prism in prisms)
         {
             Vector3 x = prism.transform.position;
@@ -50,12 +61,19 @@ public class PrismController : MonoBehaviour
 
             // function: (1/r) Sech(j r*) Sin(k r*)
             // where r* = r - v t in the horizontal plane
+            Vector3 xOffset = x - locTriggered;
+            float timeOffset = Time.time - timeTriggered;
 
-            float rSq = x[0] * x[0] + x[2] * x[2];
+            float rSq = xOffset[0] * xOffset[0] + xOffset[2] * xOffset[2];
             float rStar = Mathf.Sqrt(rSq) - v * Time.time;
             float decaynumber = 2.0f * Mathf.PI / decaylength;
-            float function = Mathf.Sin(wavenumber * rStar) / (Mathf.Sqrt(rSq) * Cosh(decaynumber * rStar));
+            float function = 0;
+            if(timeOffset > 0)
+            {
+                function = Mathf.Sin(wavenumber * rStar) / (Mathf.Sqrt(rSq) * Cosh(decaynumber * rStar));
+            }
 
+            // scale prism with profile 'function'
             Vector3 scale = Vector3.one;
             scale[1] += amplitude * function;
             prism.transform.localScale = scale;
